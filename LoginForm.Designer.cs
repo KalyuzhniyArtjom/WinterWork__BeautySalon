@@ -93,12 +93,12 @@
             // 
             // button2
             // 
-            this.button2.BackColor = System.Drawing.Color.Olive;
+            this.button2.BackColor = System.Drawing.Color.Crimson;
             this.button2.Location = new System.Drawing.Point(268, 228);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(102, 28);
             this.button2.TabIndex = 6;
-            this.button2.Text = "Войти";
+            this.button2.Text = "Отменить";
             this.button2.UseVisualStyleBackColor = false;
             // 
             // LoginForm
