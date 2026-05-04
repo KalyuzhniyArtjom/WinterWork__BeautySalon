@@ -7,19 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BeautySalonLib.Managers;
+using BeautySalonLib.Model;
 
 namespace WinterWork__BeautySalon
 {
-    public partial class Form1 : Form
+    public partial class LoginForm : Form
     {
-        public Form1()
-        {
-            InitializeComponent();
-        }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-    }м 
+    }
 }
