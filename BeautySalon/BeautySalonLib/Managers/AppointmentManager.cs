@@ -13,6 +13,133 @@ namespace BeautySalonLib.Managers
     {
         private DatabaseHelper _dbHelper = new DatabaseHelper();
 
+        // ============ МЕТОДЫ ДЛЯ РАБОТЫ С УСЛУГАМИ ============
+        public bool AddService(Service service)
+        {
+            string query = @"INSERT INTO ""Services"" (""Name"", ""Price"", ""DurationMinutes"") 
+                             VALUES (@name, @price, @duration)";
+            var parameters = new NpgsqlParameter[]
+            {
+                new NpgsqlParameter("@name", service.Name),
+                new NpgsqlParameter("@price", service.Price),
+                new NpgsqlParameter("@duration", service.DurationMinutes)
+            };
+            return _dbHelper.ExecuteNonQuery(query, parameters) > 0;
+        }
+
+        public bool UpdateService(Service service)
+        {
+            string query = @"UPDATE ""Services"" SET 
+                             ""Name"" = @name, 
+                             ""Price"" = @price, 
+                             ""DurationMinutes"" = @duration 
+                             WHERE ""Id"" = @id";
+            var parameters = new NpgsqlParameter[]
+            {
+                new NpgsqlParameter("@name", service.Name),
+                new NpgsqlParameter("@price", service.Price),
+                new NpgsqlParameter("@duration", service.DurationMinutes),
+                new NpgsqlParameter("@id", service.Id)
+            };
+            return _dbHelper.ExecuteNonQuery(query, parameters) > 0;
+        }
+
+        public bool DeleteService(int id)
+        {
+            string query = @"DELETE FROM ""Services"" WHERE ""Id"" = @id";
+            var parameters = new NpgsqlParameter[]
+            {
+                new NpgsqlParameter("@id", id)
+            };
+            return _dbHelper.ExecuteNonQuery(query, parameters) > 0;
+        }
+
+        // ============ МЕТОДЫ ДЛЯ РАБОТЫ С МАСТЕРАМИ ============
+        public bool AddMaster(Master master)
+        {
+            string query = @"INSERT INTO ""Masters"" (""EmployeeId"", ""FullName"", ""Specialization"", ""SkillLevel"", ""Phone"") 
+                             VALUES (@employeeId, @fullName, @specialization, @skillLevel, @phone)";
+            var parameters = new NpgsqlParameter[]
+            {
+                new NpgsqlParameter("@employeeId", master.EmployeeId),
+                new NpgsqlParameter("@fullName", master.FullName),
+                new NpgsqlParameter("@specialization", master.Specialization ?? ""),
+                new NpgsqlParameter("@skillLevel", master.SkillLevel ?? ""),
+                new NpgsqlParameter("@phone", master.Phone)
+            };
+            return _dbHelper.ExecuteNonQuery(query, parameters) > 0;
+        }
+
+        public bool UpdateMaster(Master master)
+        {
+            string query = @"UPDATE ""Masters"" SET 
+                             ""EmployeeId"" = @employeeId,
+                             ""FullName"" = @fullName, 
+                             ""Specialization"" = @specialization, 
+                             ""SkillLevel"" = @skillLevel, 
+                             ""Phone"" = @phone 
+                             WHERE ""Id"" = @id";
+            var parameters = new NpgsqlParameter[]
+            {
+                new NpgsqlParameter("@employeeId", master.EmployeeId),
+                new NpgsqlParameter("@fullName", master.FullName),
+                new NpgsqlParameter("@specialization", master.Specialization ?? ""),
+                new NpgsqlParameter("@skillLevel", master.SkillLevel ?? ""),
+                new NpgsqlParameter("@phone", master.Phone),
+                new NpgsqlParameter("@id", master.Id)
+            };
+            return _dbHelper.ExecuteNonQuery(query, parameters) > 0;
+        }
+
+        public bool DeleteMaster(int id)
+        {
+            string query = @"DELETE FROM ""Masters"" WHERE ""Id"" = @id";
+            var parameters = new NpgsqlParameter[]
+            {
+                new NpgsqlParameter("@id", id)
+            };
+            return _dbHelper.ExecuteNonQuery(query, parameters) > 0;
+        }
+
+        // ============ МЕТОДЫ ДЛЯ РАБОТЫ С КЛИЕНТАМИ ============
+        public bool AddClient(Client client)
+        {
+            string query = @"INSERT INTO ""Clients"" (""Name"", ""Phone"") 
+                             VALUES (@name, @phone)";
+            var parameters = new NpgsqlParameter[]
+            {
+                new NpgsqlParameter("@name", client.Name),
+                new NpgsqlParameter("@phone", client.Phone)
+            };
+            return _dbHelper.ExecuteNonQuery(query, parameters) > 0;
+        }
+
+        public bool UpdateClient(Client client)
+        {
+            string query = @"UPDATE ""Clients"" SET 
+                             ""Name"" = @name, 
+                             ""Phone"" = @phone 
+                             WHERE ""Id"" = @id";
+            var parameters = new NpgsqlParameter[]
+            {
+                new NpgsqlParameter("@name", client.Name),
+                new NpgsqlParameter("@phone", client.Phone),
+                new NpgsqlParameter("@id", client.Id)
+            };
+            return _dbHelper.ExecuteNonQuery(query, parameters) > 0;
+        }
+
+        public bool DeleteClient(int id)
+        {
+            string query = @"DELETE FROM ""Clients"" WHERE ""Id"" = @id";
+            var parameters = new NpgsqlParameter[]
+            {
+                new NpgsqlParameter("@id", id)
+            };
+            return _dbHelper.ExecuteNonQuery(query, parameters) > 0;
+        }
+
+        // ============ МЕТОДЫ ДЛЯ РАБОТЫ С ЗАПИСЯМИ ============
         public List<Appointment> GetAllAppointments()
         {
             var appointments = new List<Appointment>();
@@ -105,7 +232,7 @@ namespace BeautySalonLib.Managers
                 new NpgsqlParameter("@masterId", appointment.MasterId),
                 new NpgsqlParameter("@date", appointment.Date),
                 new NpgsqlParameter("@time", appointment.Time),
-                new NpgsqlParameter("@status", appointment.Status ?? "Записана"),
+                new NpgsqlParameter("@status", appointment.Status ?? "Booked"),
                 new NpgsqlParameter("@comment", (object)appointment.ClientComment ?? DBNull.Value)
             };
 
@@ -117,7 +244,7 @@ namespace BeautySalonLib.Managers
             string query = @"
                 SELECT COUNT(*) FROM ""Appointments"" 
                 WHERE ""MasterId"" = @masterId AND ""Date"" = @date AND ""Time"" = @time 
-                AND ""Status"" NOT IN ('Отменена', 'Клиент не пришёл')";
+                AND ""Status"" NOT IN ('Cancelled by Admin', 'No Show')";
 
             var parameters = new NpgsqlParameter[]
             {
@@ -126,7 +253,7 @@ namespace BeautySalonLib.Managers
                 new NpgsqlParameter("@time", time)
             };
 
-            DataTable dt = _dbHelper.ExecuteQuery(query);
+            DataTable dt = _dbHelper.ExecuteQuery(query, parameters);
             return Convert.ToInt32(dt.Rows[0][0]) == 0;
         }
 
@@ -174,7 +301,7 @@ namespace BeautySalonLib.Managers
                 new NpgsqlParameter("@search", $"%{searchText}%")
             };
 
-            DataTable dt = _dbHelper.ExecuteQuery(query);
+            DataTable dt = _dbHelper.ExecuteQuery(query, parameters);
             foreach (DataRow row in dt.Rows)
             {
                 appointments.Add(MapRowToAppointment(row));

@@ -40,7 +40,7 @@ namespace BeautySalonLib.Managers
                 new NpgsqlParameter("@date", date)
             };
 
-            DataTable dt = _dbHelper.ExecuteQuery(query);
+            DataTable dt = _dbHelper.ExecuteQuery(query, parameters);
             foreach (DataRow row in dt.Rows)
             {
                 appointments.Add(MapRowToAppointment(row));

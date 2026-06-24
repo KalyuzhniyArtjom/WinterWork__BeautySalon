@@ -1,4 +1,5 @@
 ﻿using BeautySalonLib.Model;
+using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -15,8 +16,15 @@ namespace BeautySalonLib.Managers
 
         public User Authenticate(string login, string password)
         {
-            string query = $"SELECT * FROM \"Users\" WHERE \"Login\" = '{login}' AND \"Password\" = '{password}'";
-            DataTable dt = _dbHelper.ExecuteQuery(query);
+            string query = @"SELECT * FROM ""Users"" WHERE ""Login"" = @login AND ""Password"" = @password";
+
+            var parameters = new NpgsqlParameter[]
+            {
+                new NpgsqlParameter("@login", login),
+                new NpgsqlParameter("@password", password)
+            };
+
+            DataTable dt = _dbHelper.ExecuteQuery(query, parameters);
 
             if (dt.Rows.Count == 0)
                 return null;
