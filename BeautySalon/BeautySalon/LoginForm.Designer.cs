@@ -90,6 +90,7 @@
             btnLogin.TabIndex = 5;
             btnLogin.Text = "Войти";
             btnLogin.UseVisualStyleBackColor = false;
+            btnLogin.Click += btnLogin_Click;
             // 
             // btnCancel
             // 
@@ -100,6 +101,7 @@
             btnCancel.TabIndex = 6;
             btnCancel.Text = "Отменить";
             btnCancel.UseVisualStyleBackColor = false;
+            btnCancel.Click += btnCancel_Click;
             // 
             // LoginForm
             // 

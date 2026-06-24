@@ -41,6 +41,7 @@
             dtpDate.Name = "dtpDate";
             dtpDate.Size = new Size(200, 23);
             dtpDate.TabIndex = 0;
+            dtpDate.ValueChanged += dtpDate_ValueChanged;
             // 
             // dgvAppointments
             // 
@@ -58,6 +59,7 @@
             btnComplete.TabIndex = 2;
             btnComplete.Text = "Отметить как выполненную";
             btnComplete.UseVisualStyleBackColor = true;
+            btnComplete.Click += btnComplete_Click;
             // 
             // lblNoAppointments
             // 

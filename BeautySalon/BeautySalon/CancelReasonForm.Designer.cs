@@ -61,6 +61,7 @@
             btnOK.TabIndex = 2;
             btnOK.Text = "Принять";
             btnOK.UseVisualStyleBackColor = true;
+            btnOK.Click += btnOK_Click;
             // 
             // btnCancel
             // 
@@ -70,6 +71,7 @@
             btnCancel.TabIndex = 3;
             btnCancel.Text = "Отмена";
             btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Click += btnCancel_Click;
             // 
             // CancelReasonForm
             // 

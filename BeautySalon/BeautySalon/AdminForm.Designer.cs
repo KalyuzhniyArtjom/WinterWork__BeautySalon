@@ -203,7 +203,7 @@
             label4.Font = new Font("Segoe UI", 10F);
             label4.Location = new Point(303, 417);
             label4.Name = "label4";
-            label4.Size = new Size(64, 19);
+            label4.Size = new Size(65, 19);
             label4.TabIndex = 12;
             label4.Text = "📅 Дата:";
             // 
@@ -221,7 +221,7 @@
             label3.Font = new Font("Segoe UI", 10F);
             label3.Location = new Point(23, 494);
             label3.Name = "label3";
-            label3.Size = new Size(81, 19);
+            label3.Size = new Size(82, 19);
             label3.TabIndex = 10;
             label3.Text = "👨 Мастер:";
             // 
@@ -257,7 +257,7 @@
             label1.Font = new Font("Segoe UI", 10F);
             label1.Location = new Point(23, 417);
             label1.Name = "label1";
-            label1.Size = new Size(76, 19);
+            label1.Size = new Size(79, 19);
             label1.TabIndex = 6;
             label1.Text = "👤 Клиент:";
             // 
@@ -269,6 +269,7 @@
             btnRefreshAppointments.TabIndex = 5;
             btnRefreshAppointments.Text = "Обновить";
             btnRefreshAppointments.UseVisualStyleBackColor = true;
+            btnRefreshAppointments.Click += btnRefreshAppointments_Click;
             // 
             // btnReceipt
             // 
@@ -278,6 +279,7 @@
             btnReceipt.TabIndex = 4;
             btnReceipt.Text = "Чек";
             btnReceipt.UseVisualStyleBackColor = true;
+            btnReceipt.Click += btnReceipt_Click;
             // 
             // btnCancelAppointment
             // 
@@ -287,6 +289,7 @@
             btnCancelAppointment.TabIndex = 3;
             btnCancelAppointment.Text = "Отменить";
             btnCancelAppointment.UseVisualStyleBackColor = true;
+            btnCancelAppointment.Click += btnCancelAppointment_Click;
             // 
             // btnAddAppointment
             // 
@@ -296,6 +299,7 @@
             btnAddAppointment.TabIndex = 2;
             btnAddAppointment.Text = "Добавить";
             btnAddAppointment.UseVisualStyleBackColor = true;
+            btnAddAppointment.Click += btnAddAppointment_Click;
             // 
             // dgvAppointments
             // 
@@ -312,6 +316,7 @@
             txtSearch.PlaceholderText = "Поиск: [Введите имя или телефон]";
             txtSearch.Size = new Size(314, 23);
             txtSearch.TabIndex = 0;
+            txtSearch.TextChanged += txtSearch_TextChanged;
             // 
             // tabPage2
             // 
@@ -345,6 +350,7 @@
             btnDeleteService.TabIndex = 13;
             btnDeleteService.Text = "Удалить";
             btnDeleteService.UseVisualStyleBackColor = true;
+            btnDeleteService.Click += btnDeleteService_Click;
             // 
             // btnEditService
             // 
@@ -354,6 +360,7 @@
             btnEditService.TabIndex = 12;
             btnEditService.Text = "Редактировать";
             btnEditService.UseVisualStyleBackColor = true;
+            btnEditService.Click += btnEditService_Click;
             // 
             // btnAddService
             // 
@@ -363,6 +370,7 @@
             btnAddService.TabIndex = 11;
             btnAddService.Text = "Добавить";
             btnAddService.UseVisualStyleBackColor = true;
+            btnAddService.Click += btnAddService_Click;
             // 
             // label11
             // 
@@ -400,7 +408,7 @@
             label10.Font = new Font("Segoe UI", 10F);
             label10.Location = new Point(23, 498);
             label10.Name = "label10";
-            label10.Size = new Size(120, 19);
+            label10.Size = new Size(122, 19);
             label10.TabIndex = 6;
             label10.Text = "⏱ Длительность:";
             // 
@@ -410,7 +418,7 @@
             label9.Font = new Font("Segoe UI", 10F);
             label9.Location = new Point(23, 461);
             label9.Name = "label9";
-            label9.Size = new Size(79, 19);
+            label9.Size = new Size(82, 19);
             label9.TabIndex = 5;
             label9.Text = "💰 Цена, ₽:";
             // 
@@ -431,6 +439,7 @@
             dgvServices.Name = "dgvServices";
             dgvServices.Size = new Size(725, 348);
             dgvServices.TabIndex = 3;
+            dgvServices.SelectionChanged += dgvServices_SelectionChanged;
             // 
             // btnSearchService
             // 
@@ -491,6 +500,7 @@
             btnDeleteMaster.TabIndex = 16;
             btnDeleteMaster.Text = "Удалить";
             btnDeleteMaster.UseVisualStyleBackColor = true;
+            btnDeleteMaster.Click += btnDeleteMaster_Click;
             // 
             // btnEditMaster
             // 
@@ -500,6 +510,7 @@
             btnEditMaster.TabIndex = 15;
             btnEditMaster.Text = "Редактировать";
             btnEditMaster.UseVisualStyleBackColor = true;
+            btnEditMaster.Click += btnEditMaster_Click;
             // 
             // btnAddMaster
             // 
@@ -509,6 +520,7 @@
             btnAddMaster.TabIndex = 14;
             btnAddMaster.Text = "Добавить";
             btnAddMaster.UseVisualStyleBackColor = true;
+            btnAddMaster.Click += btnAddMaster_Click;
             // 
             // cmbSkillLevel
             // 
@@ -541,7 +553,7 @@
             label16.Font = new Font("Segoe UI", 10F);
             label16.Location = new Point(3, 525);
             label16.Name = "label16";
-            label16.Size = new Size(145, 19);
+            label16.Size = new Size(146, 19);
             label16.TabIndex = 8;
             label16.Text = "📊 Уровень навыков:";
             // 
@@ -561,7 +573,7 @@
             label14.Font = new Font("Segoe UI", 10F);
             label14.Location = new Point(24, 453);
             label14.Name = "label14";
-            label14.Size = new Size(88, 19);
+            label14.Size = new Size(89, 19);
             label14.TabIndex = 6;
             label14.Text = "📞 Телефон:";
             // 
@@ -578,7 +590,7 @@
             label13.Font = new Font("Segoe UI", 10F);
             label13.Location = new Point(24, 416);
             label13.Name = "label13";
-            label13.Size = new Size(118, 19);
+            label13.Size = new Size(121, 19);
             label13.TabIndex = 4;
             label13.Text = "👤 ФИО мастера:";
             // 
@@ -589,6 +601,7 @@
             dgvMasters.Name = "dgvMasters";
             dgvMasters.Size = new Size(785, 340);
             dgvMasters.TabIndex = 3;
+            dgvMasters.Click += dgvMasters_SelectionChanged;
             // 
             // btnSearchMaster
             // 
@@ -647,6 +660,7 @@
             btnDeleteClient.TabIndex = 12;
             btnDeleteClient.Text = "Удалить";
             btnDeleteClient.UseVisualStyleBackColor = true;
+            btnDeleteClient.Click += btnDeleteClient_Click;
             // 
             // btnEditClient
             // 
@@ -656,6 +670,7 @@
             btnEditClient.TabIndex = 11;
             btnEditClient.Text = "Редактировать";
             btnEditClient.UseVisualStyleBackColor = true;
+            btnEditClient.Click += btnEditClient_Click;
             // 
             // btnAddClient
             // 
@@ -665,6 +680,7 @@
             btnAddClient.TabIndex = 10;
             btnAddClient.Text = "Добавить";
             btnAddClient.UseVisualStyleBackColor = true;
+            btnAddClient.Click += btnAddClient_Click;
             // 
             // txtClientName
             // 
@@ -703,7 +719,7 @@
             label19.Font = new Font("Segoe UI", 10F);
             label19.Location = new Point(39, 432);
             label19.Name = "label19";
-            label19.Size = new Size(88, 19);
+            label19.Size = new Size(89, 19);
             label19.TabIndex = 5;
             label19.Text = "📞 Телефон:";
             // 
@@ -713,7 +729,7 @@
             label18.Font = new Font("Segoe UI", 10F);
             label18.Location = new Point(21, 399);
             label18.Name = "label18";
-            label18.Size = new Size(117, 19);
+            label18.Size = new Size(120, 19);
             label18.TabIndex = 4;
             label18.Text = "👤 ФИО клиента:";
             // 
@@ -724,6 +740,7 @@
             dgvClients.Name = "dgvClients";
             dgvClients.Size = new Size(738, 326);
             dgvClients.TabIndex = 3;
+            dgvClients.SelectionChanged += dgvClients_SelectionChanged;
             // 
             // btnSearchClient
             // 
